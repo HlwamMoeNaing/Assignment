@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".views.fragments.SearchFragment"
+    android:id="@+id/searchLayout">
+
+<!--    <include-->
+<!--        android:id="@+id/toolbar_view"-->
+<!--        layout="@layout/toolbar_view_custom_layout"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/child_layout">
+        <EditText
+            android:layout_width="@dimen/_250adp"
+            android:layout_height="wrap_content"
+            android:id="@+id/ed_search"
+            android:textStyle="bold"
+            android:hint="Search"
+            android:textColorHint="@color/black"
+
+            android:textColor="#1B1313"
+            app:layout_constraintStart_toStartOf="@+id/child_layout"
+            app:layout_constraintTop_toTopOf="@+id/child_layout"/>
+
+            <ImageButton
+                android:layout_width="@dimen/_50adp"
+                android:layout_height="@dimen/_50adp"
+                app:layout_constraintBottom_toBottomOf="@id/ed_search"
+                app:layout_constraintTop_toTopOf="@id/ed_search"
+                android:src="@drawable/ic_search"
+                app:layout_constraintEnd_toEndOf="@id/child_layout"
+                android:layout_marginEnd="@dimen/_20adp"
+                android:id="@+id/enter_to_search"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ProgressBar
+        android:id="@+id/searchProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/searchRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/child_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/child_layout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
