@@ -7,12 +7,7 @@
     tools:context=".views.fragments.SearchFragment"
     android:id="@+id/searchLayout">
 
-<!--    <include-->
-<!--        android:id="@+id/toolbar_view"-->
-<!--        layout="@layout/toolbar_view_custom_layout"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

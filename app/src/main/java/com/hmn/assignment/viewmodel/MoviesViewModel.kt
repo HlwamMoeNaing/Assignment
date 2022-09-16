@@ -20,7 +20,7 @@ class MoviesViewModel(
 
     var job: Job? = null
     val MovieDetails = MutableLiveData<MovieDetails>()
-
+    var searchResult = MutableLiveData<List<Result>>()
 
     val exceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
         onError("Exception handled: ${throwable.localizedMessage}")
@@ -54,10 +54,37 @@ class MoviesViewModel(
     }
 
 
-fun searchMovie(query: String): LiveData<List<Result>?> {
-    return repository.searchMovies(query)
-}
 
+
+    fun getSearch(str: String)=viewModelScope.launch {
+
+        job = CoroutineScope(Dispatchers.IO +exceptionHandler).launch {
+            val apiService = MoviesApi()
+            val resp = apiService.searchMovie(str)
+            withContext(Dispatchers.Main){
+                searchResult.value = resp.results
+            }
+
+            /*
+            * In the api service if you want to use Obserable, delete suspend. or not delete obserable
+            * */
+
+
+//            resp.forEach {
+//                myRes = it.results
+//            }
+//            withContext(Dispatchers.Main){
+//             searchResult.postValue(myRes)
+//            }
+
+
+        }
+
+
+
+
+
+    }
 
      fun getAllSavedList() = viewModelScope.launch {
 

@@ -8,7 +8,10 @@ import androidx.lifecycle.MutableLiveData
 import com.hmn.assignment.data.local.AllMovieEntity
 import com.hmn.assignment.data.local.MovieDao
 import com.hmn.assignment.data.local.MovieDatabase
-import com.hmn.assignment.data.net.*
+import com.hmn.assignment.data.net.Movies
+import com.hmn.assignment.data.net.MoviesApi
+import com.hmn.assignment.data.net.Result
+import com.hmn.assignment.data.net.SafeApiRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,23 +33,6 @@ class MoviesRepository(
 
 
 
-   fun searchMovies(query: String): LiveData<List<Result>?> {
-
-        val data = MutableLiveData<List<Result>>()
-api.searchMovie("c11dcb567483000f07d05199bf19ef01",query).
-        enqueue(object : Callback<Movies> {
-            override fun onFailure(call: Call<Movies>, t: Throwable) {
-
-                Log.d(this.javaClass.simpleName, "Failure")
-            }
-
-            override fun onResponse(call: Call<Movies>, response: Response<Movies>) {
-                data.value = response.body()?.results
-                Log.d("hmn", "Response: ${response.body()?.results}")
-            }
-        })
-        return data
-    }
 
     fun insertAllMovies(movies: List<AllMovieEntity>) {
         InsertAllBanner(movieDao).execute(movies)
@@ -55,7 +41,6 @@ api.searchMovie("c11dcb567483000f07d05199bf19ef01",query).
     fun getAllVideos(): List<AllMovieEntity> {
         return getAllVideos
     }
-
 
 
 }

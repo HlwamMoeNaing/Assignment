@@ -28,9 +28,10 @@ interface MoviesApi {
     @GET("movie/{movieId}?api_key=c11dcb567483000f07d05199bf19ef01")
     suspend fun getMovieDetails(@Path("movieId") movieId: Int, @Query("language") language: String): Response<MovieDetails>
 
-    @GET("search/movie")
-    fun searchMovie(@Query("api_key") api_key: String, @Query("query") q: String): Call<Movies>
-
+//    @GET("search/movie")
+//    fun searchMovie(@Query("api_key") api_key: String, @Query("query") q: String): Call<Movies>
+@GET("search/movie?api_key=c11dcb567483000f07d05199bf19ef01")
+suspend fun searchMovie( @Query("query") q: String): Movies
     companion object {
         operator fun invoke(): MoviesApi {
             val gson = GsonBuilder().setLenient().create()
